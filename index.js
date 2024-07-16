@@ -7,16 +7,16 @@ const WebSocket = require("ws");
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
+const cors = require("cors"); // Import the cors package
+
 
 const Product = require("./product");
 const WebsocketModel = require("./websocket_model");
 
+app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
+app.use(express.urlencoded({ extended: true }));
+
 
 const productData = [];
 
